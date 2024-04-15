@@ -94,7 +94,7 @@ def shortest_path(source, target):
 
     # Initialise Node and Frontier with source:
     start = Node(state=source, parent=None, action=None)
-    frontier = StackFrontier()
+    frontier = QueueFrontier()
     frontier.add(start)
 
     # Create set() for explored neighbours
@@ -126,7 +126,6 @@ def shortest_path(source, target):
                     solution.reverse()
                     return solution
 
-
         # Marking node as explored
         explored_neighbours.add(node.state)
         # If no connection is made, add new states to the frontier
@@ -135,9 +134,6 @@ def shortest_path(source, target):
             if not frontier.contains_state(state[1]) and state[1] not in explored_neighbours:
                 child = Node(state=state[1], parent=node, action=state[0])
                 frontier.add(child)
-
-
-    # raise NotImplementedError
 
 
 def person_id_for_name(name):
